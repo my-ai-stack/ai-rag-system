@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-rag-system"
+version = "0.1.0"
+description = "Production-ready RAG (Retrieval Augmented Generation) system with knowledge base support"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+keywords = ["rag", "llm", "ai", "retrieval-augmented-generation", "chatbot", "document-qa", "chromadb", "openai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "openai>=1.0.0",
+    "chromadb>=0.4.0",
+    "gradio>=4.0.0",
+    "pymupdf>=1.23.0",
+    "python-docx>=0.8.11",
+    "tiktoken>=0.5.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.4.0",
+]
+
+[project.scripts]
+rag-ingest = "rag_engine:ingest_cli"
+rag-query = "rag_engine:query_cli"
+rag-ui = "gradio_app:main"
+
+[project.urls]
+Homepage = "https://github.com/my-ai-stack/ai-rag-system"
+Repository = "https://github.com/my-ai-stack/ai-rag-system"
+HuggingFace = "https://huggingface.co/spaces/my-ai-stack/ai-rag-system"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rag"]  # Adjust if source is in root
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
